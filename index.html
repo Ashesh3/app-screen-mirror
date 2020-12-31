@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css">
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            table-layout: fixed;
+        }
+
+        td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        img {
+            border-radius: 50%;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body class="bg-dark">
+    <div class="container text-center" style="margin: auto; height: 50%; min-width: 200px; padding-top: 7%;">
+        <div id="adb_not_connected" style="display: none;">
+            <div class="alert alert-danger">
+                Device Not Connected!
+            </div>
+            <button type="button" class="btn btn-primary btn-lg" onclick="connect_device()">Connect Device</button>
+        </div><br>
+        <div id="adb_connecting_progress" style="display: none;">
+            <h3 id="progress_status_msg">{progress_status}</h3>
+            <div class="progress">
+                <div id="adb_connecting_progress_bar"
+                    class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar"
+                    style="width: 100%;" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                </div>
+            </div>
+        </div><br>
+        <div id="adb_is_connected" style="display: none;">
+            <div class="alert alert-success">
+                <p id="device_connected_msg" style="font-size: large;">Device is Connected! <strong>${IP}</strong></p>
+            </div>
+        </div><br>
+        <table id="apps_table" class="table table-hover">
+            <tbody id="apps_table_body">
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function (e) {
+            init();
+        });
+    </script>
+</body>
+
+</html>
